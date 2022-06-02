@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  leader:
+    image: jenkins/jenkins:lts-jdk11
+    privileged: true
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    container_name: leader
+  agent:
+    build: ./agent
+    privileged: true
+    user: root
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwRKXCfdXuukons2JAvDWHoMEWrKocK24iXplgGGiuWtODUGbEXf2j4XOfbOM9S9mF3LjJqI5TL/Ywm2QB7UKgLoE971awdK4xWfmZpPEU1gDockzf60yzsgVilGpcAnSuyzRoOIpObJB8NffMh3ZYsxg4nEO79UCPaUP5jDWRyKxjOg5+aZstXRmfah5xmWP68kcViI6hs2pPR9wyca9hf6Do4ErXTNEsWiLGO90bntL9reK1K2sY7kr0phOZGA+0Ageoj86TL0PjeyA0iorogJmLO8lNdeLkX6jum6PqHlxYicCYMk29v6cSFNj39XGw86lWaM4vhZ7O4iGcQpfAByJOOJ2UGlo2W1nTg5a2lHun5gFz3Gu2c1dUH+uFtKql3ZQxEwJeKV+KhD1x7p4U8bZtpWnKAkvZuH4RXSvdrMHKvg52DXCOUeiMQsW4zKxAtxsUYJaijpqSr24VLwkvfg9MlA+70QZAVM6KC2JXinX7BKDsZr7N0XWFg33x/DRUlxiQ6g8O5Y9JKXtUlix15vIkJGADVDETgy/IWi8EzfuKdoLjhpJTaM4avEhZJ3qbbtEiG3JXoPE9bUExx2Db33NtjqC/z4KKZwNIrROltQ3srGaoOwzBMCNnSZimiA9saEFjMcV+p/YMA4MFWUvZCj04GAT/mCESjVKIgze6pw== benedikt@gradle.com
